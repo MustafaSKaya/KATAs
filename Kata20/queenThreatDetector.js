@@ -1,12 +1,12 @@
 const generateBoard = function(wQ, bQ) {
-    let board = [];
-    for(let i = 0; i < 8; i++) {
-      board.push([0,0,0,0,0,0,0,0]);
-    }
-    board[wQ[0]].splice(wQ[1], 1, 1);
-    board[bQ[0]].splice(bQ[1], 1, 1);
-    return board;
-  };
+  let board = [];
+  for (let i = 0; i < 8; i++) {
+    board.push([0,0,0,0,0,0,0,0]);
+  }
+  board[wQ[0]].splice(wQ[1], 1, 1);
+  board[bQ[0]].splice(bQ[1], 1, 1);
+  return board;
+};
   
 const queenThreat = function(generatedBoard) {
   const queens = [];
@@ -14,9 +14,9 @@ const queenThreat = function(generatedBoard) {
     for (let j = 0; j < generatedBoard.length; j++) {
       if (generatedBoard[i][j] === 1) {
         queens.push([i, j]);
+      }
     }
   }
-}
   
   if (queens[0][0] === queens[1][0] || queens[0][1] === queens[1][1]) {
     return true;
