@@ -1,105 +1,138 @@
 let arrOfConsonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'];
 let arrOfVowels = ['a','e','o','u','i'];
 
-const makeCase = function(input, cAse) {
-  if (cAse === "camel") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === " ") {
-        desiredStr = desiredStr + input[i + 1].toUpperCase();
-        i++;
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    return desiredStr;
+const makeCase = function(input, _case) {
+  if (_case === "camel") {
+    return camelCase(input);
   }
-  if (cAse === "pascal") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === " ") {
-        desiredStr = desiredStr + input[i + 1].toUpperCase();
-        i++;
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    desiredStr = desiredStr.replace(desiredStr[0], desiredStr[0].toUpperCase());
-    return desiredStr;
+  if (_case === "pascal") {
+    return pascalCase(input);
   }
-  if (cAse === "snake") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === " ") {
-        desiredStr = desiredStr + "_" + input[i + 1];
-        i++;
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    return desiredStr;
+  if (_case === "snake") {
+    return snakeCase(input);
   }
-  if (cAse === "kebab") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === " ") {
-        desiredStr = desiredStr + "-" + input[i + 1];
-        i++;
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    return desiredStr;
+  if (_case === "kebab") {
+    return kebabCase(input);
   }
-  if (cAse === "title") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === " ") {
-        desiredStr = desiredStr + input[i] + input[i + 1].toUpperCase();
-        i++;
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    desiredStr = desiredStr.replace(desiredStr[0], desiredStr[0].toUpperCase());
-    return desiredStr;
+  if (_case === "title") {
+    return titleCase(input);
   }
-  if (cAse === "vowel") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (arrOfVowels.includes(input[i])) {
-        desiredStr = desiredStr + input[i].toUpperCase();
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    return desiredStr;
+  if (_case === "vowel") {
+    return upTheVowels(input);
   }
-  if (cAse === "consonant") {
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (arrOfConsonants.includes(input[i])) {
-        desiredStr = desiredStr + input[i].toUpperCase();
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    return desiredStr;
+  if (_case === "consonant") {
+    return upTheConsonants(input);
   }
-  if (cAse[0] === "upper" && cAse[1] === "snake") {
-    input = input.toUpperCase();
-    let desiredStr = "";
-    for (let i = 0; i < input.length; i++) {
-      if (input[i] === " ") {
-        desiredStr = desiredStr + "_" + input[i + 1];
-        i++;
-      } else {
-        desiredStr = desiredStr + input[i];
-      }
-    }
-    return desiredStr;
+  if (_case[0] === "upper" && _case[1] === "snake") {
+    return upperSnake(input);
   }
 };
+
+const camelCase = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === " ") {
+      desiredStr = desiredStr + sentence[i + 1].toUpperCase();
+      i++;
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  return desiredStr;
+};
+
+const pascalCase = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === " ") {
+      desiredStr = desiredStr + sentence[i + 1].toUpperCase();
+      i++;
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  desiredStr = desiredStr.replace(desiredStr[0], desiredStr[0].toUpperCase());
+  return desiredStr;
+};
+
+const snakeCase = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === " ") {
+      desiredStr = desiredStr + "_" + sentence[i + 1];
+      i++;
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  return desiredStr;
+};
+
+const upperSnake = (sentence) => {
+  sentence = sentence.toUpperCase();
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === " ") {
+      desiredStr = desiredStr + "_" + sentence[i + 1];
+      i++;
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  return desiredStr;
+};
+
+const kebabCase = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === " ") {
+      desiredStr = desiredStr + "-" + sentence[i + 1];
+      i++;
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  return desiredStr;
+};
+
+const titleCase = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === " ") {
+      desiredStr = desiredStr + sentence[i] + sentence[i + 1].toUpperCase();
+      i++;
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  desiredStr = desiredStr.replace(desiredStr[0], desiredStr[0].toUpperCase());
+  return desiredStr;
+};
+
+const upTheVowels = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (arrOfVowels.includes(sentence[i])) {
+      desiredStr = desiredStr + sentence[i].toUpperCase();
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  return desiredStr;
+};
+
+const upTheConsonants = (sentence) => {
+  let desiredStr = "";
+  for (let i = 0; i < sentence.length; i++) {
+    if (arrOfConsonants.includes(sentence[i])) {
+      desiredStr = desiredStr + sentence[i].toUpperCase();
+    } else {
+      desiredStr = desiredStr + sentence[i];
+    }
+  }
+  return desiredStr;
+};
+ 
 console.log(makeCase("this is a string", "camel")); //thisIsAString
 console.log(makeCase("this is a string", "pascal")); //ThisIsAString
 console.log(makeCase("this is a string", "snake")); //this_is_a_string

@@ -23,7 +23,7 @@ const findDay = function(day) {
     daysPronunciation = day + "rd";
   } else {
     daysPronunciation = day + "th";
-  };
+  }
   
   return daysPronunciation;
 };
